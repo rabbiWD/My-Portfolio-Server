@@ -61,6 +61,24 @@ app.post('/api/contact', async (req, res) => {
             <p>MERN Stack Developer</p>
         `,
   };
+
+  try {
+    await transporter.sendMail(mailToOwner);
+    await transporter.sendMail(autoReplyToUser);
+
+    res.status(200).json({
+      success: true,
+      message: 'Message sent successfully!',
+    });
+  } catch (error) {
+    console.error('Nodemailer Error:', error);
+
+    res.status(500).json({
+      success: false,
+      message: 'Email sending failed. Please check server logs.',
+      error: error.message,
+    });
+  }
 });
 
 app.listen(PORT, () => {
