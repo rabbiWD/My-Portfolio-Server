@@ -47,6 +47,20 @@ app.post('/api/contact', async (req, res) => {
             <p>${message}</p>
         `,
   };
+
+  const autoReplyToUser = {
+    from: 'RABBI KHAN <' + process.env.EMAIL_USER + '>',
+    to: email,
+    subject: 'Thank you for reaching out!',
+    html: `
+            <p>Hi ${name},</p>
+            <p>Thank you for reaching out! I have received your request: "${message}", and I'll contact you back as soon as possible.</p>
+            <br>
+            <p>Best Regards</p>
+            <p><strong>RABBI KHAN</strong></p>
+            <p>MERN Stack Developer</p>
+        `,
+  };
 });
 
 app.listen(PORT, () => {
