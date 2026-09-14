@@ -83,4 +83,5 @@ app.post('/api/contact', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`API available at http://localhost:${PORT}/api/contact`);
 });
