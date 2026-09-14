@@ -34,6 +34,19 @@ app.post('/api/contact', async (req, res) => {
       .status(400)
       .json({ success: false, message: 'Please fill out all fields.' });
   }
+
+  const mailToOwner = {
+    from: `"${name}" <${email}>`,
+    to: process.env.EMAIL_USER,
+    subject: `Contact with ${name}`,
+    html: `
+            <h3>Message Details:</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message}</p>
+        `,
+  };
 });
 
 app.listen(PORT, () => {
